@@ -92,4 +92,15 @@
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(window).on('shown.bs.modal', function() {
+        // console.log('test') 
+        t1 = window.setTimeout(function() { 
+          window.location = "http://193.230.8.27:18080/view/57f92169c6047b800f1e2122";
+        },2000)
+      })
+    })
+
+  </script>
 </html>

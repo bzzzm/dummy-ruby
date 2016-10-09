@@ -27,16 +27,25 @@
       <div class="row marketing">
       <p class="text-center head-form">Formular 101</p>
         <div class="col-lg-12">
-        <table class="table">
-          
-        <% data.each do |d| %>
-          <tr>
-            <th class="bold"><%= d['label'] %></th>
-            <td><%= d['value'] %></td>
-          </tr>
-        <% end %>
-        </table>
-      </div>
+          <p>Subsemnatul <b><%= data['nume'] %> <%= data['prenume'] %></b>, legitimat cu CNP <b><%= data['cnp'] %></b>, cu adresa de email <b><%= data['email'] %></b>, declar pe proprie raspundere ca detin urmatoarele animale de companie: </p>
+          <table class="table">
+            <tr>
+              <th>Pisici</th>
+              <tr><%= data['pisici'] %></tr>
+            </tr>
+            <tr>
+              <th>Caini</th>
+              <tr><%= data['caini'] %></tr>
+            </tr>
+            <tr>
+              <th>Pitoni</th>
+              <tr><%= data['pitoni'] %></tr>
+            </tr>
+          </table>
+
+          <p>Semnatura (digitala!)</p>
+          <p>01001001 01101111 01101110 00100000 01010000 01101111 01110000 01100101 01110011 01100011 01110101 </p>
+        </div>
 
       <footer class="footer">
         <p>&copy; Institutie 2.0 - eForms team - 2016</p>

@@ -19,23 +19,28 @@ end
 
 post '/callback' do
     content_type 'application/pdf'
-    data = JSON.parse(request.body.read.to_s)
+
     erb_file = 'views/ty.erb'
 
-    html = ERB.new(File.read(erb_file)).result(OpenStruct.new({'data' => data}).instance_eval { binding }) 
+    html = ERB.new(File.read(erb_file)).result(OpenStruct.new({'data' => params}).instance_eval { binding }) 
     kit = PDFKit.new(html, :page_size => 'Letter')
 
-    # kit.stylesheets << 'public/bootstrap.css'
-    # return html
     return kit.to_pdf
 
-    # data = JSON.parse(request.body.read.to_s)
-    # erb :ty, :locals => { :data => data }
+    # return html
 end
 
-get '/callback' do
+get '/test_callback' do
     content_type 'application/pdf'
-    data = JSON.parse('[{"value": "cucu","type":"text","required":true,"label":"Nume","subtype":"text","name":"nume","className":"Cnp"},{"type":"text","required":true,"label":"Prenume","subtype":"text","name":"text-1476014729454","value":"test","className":"Cnp"}]')
+    json = JSON.parse('[{"value": "Popescu","type":"text","required":true,"label":"Nume","subtype":"text","name":"nume","className":"Cnp"},{"type":"text","required":true,"label":"Prenume","subtype":"text","name":"prenume","value":"Ion","className":"Cnp"}]')
+    data = {}
+    json.each do |d|
+        data[d['name']] = {
+            'value' => d['value'],
+            'label' => d['label']
+        }
+    end
+    p data
     erb_file = 'views/ty.erb'
 
     html = ERB.new(File.read(erb_file)).result(OpenStruct.new({'data' => data}).instance_eval { binding }) 
